@@ -6,11 +6,14 @@ import Sidebar from "./components/sidebar/sidebar";
 import MainContainer from "./components/mainContainer/mainContainer";
 
 function App() {
+  const [theme, setTheme] = useState("dark");
   return (
-    <div className="App">
-      <Header />
-      <Sidebar />
-      <MainContainer />
+    <div className={`App ${theme}`}>
+      <Sidebar setTheme={setTheme} />
+      <div>
+        <Header />
+        <MainContainer />
+      </div>
     </div>
   );
 }
