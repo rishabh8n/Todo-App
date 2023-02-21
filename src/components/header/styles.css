@@ -1,0 +1,75 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 1em;
+  background-color: var(--background-accent);
+  width: 100%;
+  height: 10vh;
+  color: var(--font-main);
+  transition: all 0.3s ease;
+}
+.header h1 {
+  flex-basis: 100%;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+.header .addTask-btn {
+  white-space: nowrap;
+  color: var(--font-selected);
+  background-color: var(--accent-color);
+  padding: 0.7em 1.1em;
+  border-radius: 2em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.header button:hover {
+  opacity: 0.85;
+}
+.header .menu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header svg {
+  height: 25px;
+  color: var(--font-color);
+}
+.overlay {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.dropdown {
+  position: absolute;
+  top: 8.4vh;
+  right: 1em;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1.2em 0.7em;
+  background-color: var(--background);
+  border-radius: 0.4em;
+  box-shadow: 0 0 5px 1px rgba(195, 195, 195, 0.068);
+}
+.dropdown button {
+  text-align: left;
+  width: 9em;
+  color: var(--font-color);
+  padding: 0.2em 1em 0.2em 0;
+  cursor: pointer;
+}
+.dropdown button:nth-of-type(2) {
+  color: red;
+}
+.dropdown button:hover {
+  opacity: 0.7;
+}

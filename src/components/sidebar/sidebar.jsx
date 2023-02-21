@@ -6,6 +6,10 @@ import {
   selectActiveBoard,
   changeActiveBoard,
 } from "../../features/activeBoardSlice";
+import {
+  changeActiveModal,
+  changeModalStatus,
+} from "../../features/modalsSlice";
 
 function Sidebar({ setTheme }) {
   const [hide, setHide] = useState(false);
@@ -56,7 +60,14 @@ function Sidebar({ setTheme }) {
               </button>
             );
           })}
-          <button className="addBoard">+Create New Board</button>
+          <button
+            className="addBoard"
+            onClick={() => {
+              dispatch(changeActiveModal("addBoard"));
+            }}
+          >
+            +Create New Board
+          </button>
         </div>
         <div className="theme">
           <Sun />

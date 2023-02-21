@@ -10,7 +10,7 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <Sidebar setTheme={setTheme} />
-      <div>
+      <div className="main">
         <Header />
         <MainContainer />
       </div>

@@ -182,6 +182,7 @@ svg {
 .hide-btn button {
   padding: 1em 0;
   width: 100%;
+  cursor: pointer;
 }
 .hide,
 .show {
