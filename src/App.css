@@ -35,4 +35,5 @@
 }
 .App .main {
   flex-basis: 100%;
+  width: max(calc(100% - 100vw), calc(100% - 300px));
 }

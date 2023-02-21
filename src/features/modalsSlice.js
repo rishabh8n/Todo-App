@@ -20,8 +20,8 @@ export const activeBoardSlice = createSlice({
 export const { changeActiveModal, changeModalStatus } =
   activeBoardSlice.actions;
 
-export const selectActiveBoard = (state) => {
-  return state.activeBoard.index;
+export const selectActiveModal = (state) => {
+  return state.modal.modalName;
 };
 
 export default activeBoardSlice.reducer;

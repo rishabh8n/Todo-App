@@ -1,0 +1,50 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+}
+.column::-webkit-scrollbar {
+  display: none;
+}
+.column .title {
+  color: var(--font-color);
+  font-weight: 700;
+  font-size: 0.79rem;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.column p::before {
+  content: "";
+  height: 11px;
+  width: 11px;
+  background-color: blueviolet;
+  border-radius: 50%;
+}
+.task {
+  background-color: rgba(255, 255, 255, 0.086);
+  padding: 0.8em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.task:hover {
+  background-color: rgba(255, 255, 255, 0.042);
+}
+.task .task-title {
+  color: var(--font-main);
+  font-weight: 400;
+  font-size: 0.85rem;
+  padding: 0.2em 0;
+}
+.subtask-count {
+  color: #696f7e;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2em 0;
+}
