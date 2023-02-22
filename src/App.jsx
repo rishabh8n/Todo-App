@@ -12,7 +12,7 @@ function App() {
     <div className={`App ${theme}`}>
       <Sidebar setTheme={setTheme} />
       <div className="main">
-        <Header />
+        <Header setTheme={setTheme} />
         <MainContainer />
       </div>
       <Modal />

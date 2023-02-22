@@ -16,12 +16,14 @@
 
 .App.dark {
   --background: #21212d;
-  --background-accent: #2c2c38;
+  --background-accent: #2c2c37;
   --accent-color: #645fc6;
   --font-color: #848b9c;
   --font-main: white;
   --font-selected: white;
   --task-card: rgba(255, 255, 255, 0.086);
+  --add-col-btn: white;
+  --red: rgb(221, 69, 69);
 }
 .App.light {
   --background: #ecf1ff;
@@ -31,6 +33,9 @@
   --font-main: black;
   --font-selected: white;
   --task-card: rgba(173, 173, 173, 0.185);
+  --modal-background: #2c2c37;
+  --add-col-btn: #ecf1ff;
+  --red: rgb(221, 69, 69);
 }
 .App {
   display: flex;

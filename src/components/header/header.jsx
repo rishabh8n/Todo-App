@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Menu } from "../../assets/icons";
-import { selectActiveBoardId } from "../../features/activeBoardSlice";
+import { Board, Down, Menu, Moon, Sun } from "../../assets/icons";
+import {
+  changeActiveBoardId,
+  selectActiveBoardId,
+} from "../../features/activeBoardSlice";
 import { changeActiveModal } from "../../features/modalsSlice";
 import "./styles.css";
 
-function Header() {
-  const [menuActive, setMenuActive] = useState(false);
+function Header({ setTheme }) {
+  const [hide, setHide] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const activeBoardId = useSelector(selectActiveBoardId);
+  const boards = useSelector((state) => state.todo.boards);
+  const [menuActive, setMenuActive] = useState(false);
+  const [mobileMenuActive, setMobileMenuActive] = useState(false);
+
   const board = useSelector((state) =>
     state.todo.boards.find((board) =>
       board.id === activeBoardId ? true : false
@@ -17,14 +25,80 @@ function Header() {
   return (
     <>
       <div className="header">
+        <div className="logo">
+          <div className="logo-art">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
         {board && (
           <>
             <h1>{board.name}</h1>
+            <div className="mobile-drop-btn">
+              <button onClick={() => setMobileMenuActive((prev) => !prev)}>
+                <Down />
+              </button>
+            </div>
+            {mobileMenuActive && (
+              <>
+                <div
+                  className="mobile overlay"
+                  onClick={() => setMobileMenuActive(false)}
+                ></div>
+                <div className="mobile-drop-menu">
+                  <div className="boards">
+                    <p className="boards-count">ALL BOARDS({boards.length})</p>
+                    {boards.map((board, index) => {
+                      return (
+                        <button
+                          className={`board-name ${
+                            activeBoardId === board.id ? "active" : ""
+                          }`}
+                          key={board.id}
+                          onClick={() =>
+                            dispatch(changeActiveBoardId(board.id))
+                          }
+                        >
+                          <Board />
+                          <span>{board.name}</span>
+                        </button>
+                      );
+                    })}
+                    <button
+                      className="addBoard"
+                      onClick={() => {
+                        dispatch(changeActiveModal({ name: "addBoard" }));
+                        setMobileMenuActive(false);
+                      }}
+                    >
+                      +Create New Board
+                    </button>
+                  </div>
+                  <div className="theme">
+                    <Sun />
+
+                    <button
+                      className={darkMode ? "on" : "off"}
+                      onClick={() => {
+                        setDarkMode((prev) => {
+                          setTheme(!prev ? "dark" : "light");
+                          return !prev;
+                        });
+                      }}
+                    >
+                      <div></div>
+                    </button>
+                    <Moon />
+                  </div>
+                </div>
+              </>
+            )}
             <button
               className="addTask-btn"
               onClick={() => dispatch(changeActiveModal({ name: "addTask" }))}
             >
-              + Add New Task
+              + <span>Add New Task</span>
             </button>
             <div>
               <button

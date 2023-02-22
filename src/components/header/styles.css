@@ -11,10 +11,22 @@
   border-bottom: 1px solid var(--font-color);
   transition: all 0.3s ease;
 }
+.mobile.overlay {
+  display: none;
+}
+.mobile-drop-menu {
+  display: none;
+}
+.header .logo {
+  display: none;
+}
 .header h1 {
   flex-basis: 100%;
   font-size: 1.45rem;
   font-weight: 600;
+}
+.mobile-drop-btn {
+  display: none;
 }
 .header .addTask-btn {
   white-space: nowrap;
@@ -70,8 +82,72 @@
   cursor: pointer;
 }
 .dropdown button:nth-of-type(2) {
-  color: red;
+  color: var(--red);
 }
 .dropdown button:hover {
   opacity: 0.7;
+}
+@media only screen and (max-width: 600px) {
+  .mobile.overlay {
+    display: block;
+  }
+  .header .logo {
+    display: flex;
+    padding: 0.25em;
+  }
+  .header .addTask-btn {
+    padding: 0.7em 1.5em;
+  }
+  .header h1 {
+    font-size: 1.25rem;
+    flex-basis: 0%;
+    white-space: nowrap;
+  }
+  .header .addTask-btn span {
+    display: none;
+  }
+  .mobile-drop-btn {
+    display: flex;
+    align-items: center;
+    flex-basis: 100%;
+  }
+  .mobile-drop-btn button svg {
+    color: var(--font-main);
+  }
+  .mobile-drop-btn button {
+    padding: 0.5em 1.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-drop-menu {
+    background-color: var(--background-accent);
+    position: absolute;
+    top: 8.3vh;
+    left: 1em;
+    width: min(calc(300px - 2em), calc(100% - 2em));
+    min-width: 280px;
+    min-height: 350px;
+    box-shadow: 0 0 55px 7px rgba(160, 160, 160, 0.159);
+    border-radius: 0.35em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999999;
+  }
+  .mobile-drop-menu .board-name svg {
+    height: 16px;
+  }
+  .mobile-drop-menu .board-name.active svg {
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .header .logo {
+    display: none;
+  }
+  .header h2 {
+    font-size: 1rem;
+  }
 }

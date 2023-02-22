@@ -211,6 +211,15 @@ svg {
   animation: hide 0.3s ease alternate;
 }
 
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+  .hide-btn {
+    display: none;
+  }
+}
+
 @keyframes hide {
   0% {
     opacity: 0;
