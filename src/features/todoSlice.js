@@ -9,21 +9,113 @@ export const todoSlice = createSlice({
       state.boards.push(action.payload);
     },
     deleteBoard: (state, action) => {
-      state.boards = state.boards.filter((value, index) =>
-        index === action.payload.index ? false : true
+      state.boards = state.boards.filter((board, index) =>
+        board.id === action.payload.id ? false : true
       );
     },
-    addColumn: (state, action) => {
-      state.boards[action.payload.index].columns.push(action.payload.column);
-    },
-    removeColumn: (state, action) => {
-      state.boards[action.payload.index].columns = state.boards[
-        action.payload.index
-      ].columns.filter((value, index) =>
-        index === action.payload.index ? false : true
+    editBoard: (state, action) => {
+      let index = state.boards.findIndex((board) =>
+        board.id === action.payload.id ? true : false
       );
+      state.boards[index] = action.payload.board;
+    },
+    addTask: (state, action) => {
+      let boardIndex = state.boards.findIndex(
+        (board) => board.id === action.payload.boardId
+      );
+      let columnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.columnId
+      );
+      state.boards[boardIndex].columns[columnIndex].tasks.push(
+        action.payload.task
+      );
+    },
+    changeTaskStatus: (state, action) => {
+      let boardIndex = state.boards.findIndex(
+        (board) => board.id === action.payload.boardId
+      );
+      let sourceColumnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.sourceColumnId
+      );
+      let destColumnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.destColumnId
+      );
+      const task = state.boards[boardIndex].columns[
+        sourceColumnIndex
+      ].tasks.find((task) => task.id === action.payload.taskId);
+      task.status = state.boards[boardIndex].columns[destColumnIndex].name;
+      task.statusId = state.boards[boardIndex].columns[destColumnIndex].id;
+      state.boards[boardIndex].columns[sourceColumnIndex].tasks = state.boards[
+        boardIndex
+      ].columns[sourceColumnIndex].tasks.filter((t) => t.id !== task.id);
+      state.boards[boardIndex].columns[destColumnIndex].tasks.push(task);
+    },
+    dragAndDropTask: (state, action) => {
+      let boardIndex = state.boards.findIndex(
+        (board) => board.id === action.payload.boardId
+      );
+      let sourceColumnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.sourceColumnId
+      );
+      let destColumnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.destColumnId
+      );
+      const task = state.boards[boardIndex].columns[
+        sourceColumnIndex
+      ].tasks.find((task) => task.id === action.payload.taskId);
+
+      state.boards[boardIndex].columns[sourceColumnIndex].tasks.splice(
+        action.payload.sourceIndex,
+        1
+      );
+      state.boards[boardIndex].columns[destColumnIndex].tasks.splice(
+        action.payload.destIndex,
+        0,
+        task
+      );
+    },
+    changeSubtaskStatus: (state, action) => {
+      let boardIndex = state.boards.findIndex(
+        (board) => board.id === action.payload.boardId
+      );
+      let columnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.columnId
+      );
+      const taskIndex = state.boards[boardIndex].columns[
+        columnIndex
+      ].tasks.findIndex((task) => task.id === action.payload.taskId);
+
+      state.boards[boardIndex].columns[columnIndex].tasks[taskIndex].subtasks[
+        action.payload.subtaskIndex
+      ].isCompleted =
+        !state.boards[boardIndex].columns[columnIndex].tasks[taskIndex]
+          .subtasks[action.payload.subtaskIndex].isCompleted;
+    },
+    deleteTask: (state, action) => {
+      let boardIndex = state.boards.findIndex(
+        (board) => board.id === action.payload.boardId
+      );
+      let columnIndex = state.boards[boardIndex].columns.findIndex(
+        (column) => column.id === action.payload.columnId
+      );
+      const taskIndex = state.boards[boardIndex].columns[
+        columnIndex
+      ].tasks.findIndex((task) => task.id === action.payload.taskId);
+
+      state.boards[boardIndex].columns[columnIndex].tasks.splice(taskIndex, 1);
     },
   },
 });
+
+export const {
+  addBoard,
+  deleteBoard,
+  editBoard,
+  addTask,
+  changeTaskStatus,
+  changeSubtaskStatus,
+  dragAndDropTask,
+  deleteTask,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;

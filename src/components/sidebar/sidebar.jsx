@@ -3,8 +3,8 @@ import "./styles.css";
 import { Sun, Moon, Eye, EyeSlash, Board } from "../../assets/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectActiveBoard,
-  changeActiveBoard,
+  selectActiveBoardId,
+  changeActiveBoardId,
 } from "../../features/activeBoardSlice";
 import {
   changeActiveModal,
@@ -14,10 +14,9 @@ import {
 function Sidebar({ setTheme }) {
   const [hide, setHide] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const activeBoard = useSelector(selectActiveBoard);
+  const activeBoardId = useSelector(selectActiveBoardId);
   const boards = useSelector((state) => state.todo.boards);
   const dispatch = useDispatch();
-  console.log(boards);
   return (
     <>
       <div className="hide-btn">
@@ -50,10 +49,10 @@ function Sidebar({ setTheme }) {
             return (
               <button
                 className={`board-name ${
-                  activeBoard === index ? "active" : ""
+                  activeBoardId === board.id ? "active" : ""
                 }`}
-                key={index}
-                onClick={() => dispatch(changeActiveBoard(index))}
+                key={board.id}
+                onClick={() => dispatch(changeActiveBoardId(board.id))}
               >
                 <Board />
                 <span>{board.name}</span>
@@ -63,7 +62,7 @@ function Sidebar({ setTheme }) {
           <button
             className="addBoard"
             onClick={() => {
-              dispatch(changeActiveModal("addBoard"));
+              dispatch(changeActiveModal({ name: "addBoard" }));
             }}
           >
             +Create New Board
@@ -85,30 +84,6 @@ function Sidebar({ setTheme }) {
           </button>
           <Moon />
         </div>
-        {/* <div className="boards">
-        <p className="boards-count">ALL BOARDS(5)</p>
-        <button className="board-name active">
-          <span>Platform Launch</span>
-        </button>
-        <button className="board-name">
-          <span>Marketing Plan</span>
-        </button>
-        <button className="board-name">
-          <span>Roadmap</span>
-        </button>
-        <button className="addBoard">+Create New Board</button>
-      </div>
-      <div className="day-night">
-        <LightModeIcon />
-
-        <button
-          className={nightMode ? "on" : "off"}
-          onClick={() => setNightMode((prev) => !prev)}
-        >
-          <div></div>
-        </button>
-        <DarkModeIcon />
-      </div> */}
       </div>
     </>
   );

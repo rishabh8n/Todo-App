@@ -1,0 +1,334 @@
+.modal-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.389);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addBoard-modal,
+.editBoard-modal,
+.addTask-modal,
+.deleteBoard-modal,
+.viewTask-modal,
+.deleteTask-modal {
+  width: max(27%, 290px);
+  background-color: #2c2c37;
+  color: white;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+  border-radius: 0.4em;
+  position: relative;
+  animation: slideIn 0.3s ease;
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+.modal button {
+  padding: 0.8em;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--font-main);
+}
+
+.modal h2 {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding-right: 2em;
+}
+
+.modal label {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.modal label div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal label div .removeCol,
+.modal label div .removeSub {
+  background: none;
+  padding: 0.4em;
+}
+
+.modal svg {
+  height: 24px;
+}
+
+.modal input,
+.modal textarea {
+  flex-basis: 100%;
+  outline: 1px solid #696f7e;
+  padding: 0.7em;
+  border-radius: 0.3em;
+  color: white;
+  resize: none;
+}
+
+.modal input::placeholder,
+.modal textarea::placeholder {
+  color: #696f7e;
+  font-weight: 600;
+}
+
+.modal .addColumn-btn1 {
+  background-color: white;
+  color: #635fbf;
+  font-weight: 500;
+}
+
+.modal .addColumn-btn1:hover {
+  background-color: rgba(255, 255, 255, 0.808);
+}
+
+.add-btn,
+.save-btn {
+  background-color: #635fbf;
+  color: white;
+}
+
+.add-btn:hover,
+.save-btn:hover {
+  background-color: #645fbf9a;
+}
+
+.cancel {
+  background-color: rgb(221, 69, 69);
+  color: white;
+}
+.cancel:hover {
+  background-color: rgb(230, 109, 109);
+}
+
+.deleteBoard-modal,
+.deleteTask-modal {
+  width: max(300px, 40%);
+}
+.deleteBoard-modal p,
+.deleteTask-modal p {
+  font-size: 0.8rem;
+  color: var(--font-color);
+}
+.deleteBoard-modal div,
+.deleteTask-modal div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.deleteBoard-modal button,
+.deleteTask-modal button {
+  padding: 0.8em 2.5em;
+  background-color: var(--font-main);
+  border-radius: 2em;
+  font-weight: 600;
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deleteBoard-modal h2,
+.deleteTask-modal h2 {
+  color: rgb(221, 69, 69);
+}
+.deleteBoard-modal .confirm,
+.deleteTask-modal .confirm {
+  background-color: rgb(221, 69, 69);
+  color: var(--font-main);
+}
+.deleteBoard-modal button:hover,
+.deleteTask-modal button:hover {
+  opacity: 0.6;
+}
+.viewTask-modal p {
+  color: var(--font-color);
+  font-size: 0.8rem;
+}
+.viewTask-modal h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.subtasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.viewTask-modal .subtask-item {
+  font-size: 0.75rem;
+  padding: 0.5em 1em;
+  background-color: rgba(0, 0, 0, 0.239);
+  border-radius: 0.3em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.viewTask-modal .menu {
+  position: absolute;
+  top: 1.3em;
+  right: 0.4em;
+}
+.viewTask-modal .dropdown {
+  top: 3em;
+  padding: 0.1em;
+}
+.viewTask-modal .dropdown .deleteTask {
+  color: red;
+}
+.subtask-item input[type="checkbox"] {
+  flex-basis: 0;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #848b9c47;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid rgba(0, 0, 0, 0.303);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.subtask-item input[type="checkbox"]::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em white;
+  /* transform-origin: bottom left; */
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.subtask-item input[type="checkbox"]:checked {
+  background-color: var(--accent-color);
+  border: 0.15em solid rgba(0, 0, 0, 0);
+}
+.subtask-item input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+.close {
+  top: 1.2em;
+  right: 1.2em;
+  position: absolute;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #696f7e;
+  cursor: pointer;
+  padding: 0.2em;
+  aspect-ratio: 1;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.2em;
+  transition: all 0.3s ease;
+}
+.close:hover {
+  color: rgb(188, 188, 188);
+  background-color: rgba(0, 0, 0, 0.096);
+}
+
+/* .sub {
+  display: flex;
+}
+.sub input {
+  flex-basis: 100%;
+}
+.sub .remove-sub {
+  padding: 0.4em 0.9em;
+  background: none;
+  border-radius: 0.3em;
+  font-size: 1.3rem;
+  color: #696f7e;
+  font-weight: 600;
+}
+.sub .remove-sub:hover {
+  background-color: rgba(0, 0, 0, 0.126);
+} */
+
+.addTask-modal p {
+  font-size: 0.85rem;
+  padding: 0 0 0.4em 0;
+}
+
+.status-dropDown {
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #696f7e;
+  border-radius: 0.3em;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.status-dropDown:hover svg {
+  color: var(--accent-color);
+}
+.status-dropDown svg {
+  height: 20px;
+  transition: all 0.3s ease;
+}
+.status-dropDown.active {
+  border: 1px solid var(--accent-color);
+  margin-bottom: 100px;
+}
+.status-dropDown.active svg {
+  transform: rotate(180deg);
+}
+.status-dropDown .dropDown-menu {
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  background-color: var(--background);
+  transform: translateY(100%);
+  width: calc(100% + 10px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.status-dropDown .dropDown-menu .option-btn {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.5em 1.7em;
+  font-size: 0.9rem;
+  border-radius: 0;
+}
+.status-dropDown .dropDown-menu .option-btn:hover {
+  background-color: rgba(0, 0, 0, 0.157);
+  color: var(--accent-color);
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

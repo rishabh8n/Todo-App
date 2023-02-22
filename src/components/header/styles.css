@@ -57,7 +57,7 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  padding: 1.2em 0.7em;
+  padding: 1.2em 1em;
   background-color: var(--background);
   border-radius: 0.4em;
   box-shadow: 0 0 5px 1px rgba(195, 195, 195, 0.068);

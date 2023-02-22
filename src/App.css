@@ -6,6 +6,12 @@
   border: none;
   background: none;
   text-decoration: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
 .App.dark {
@@ -15,14 +21,16 @@
   --font-color: #848b9c;
   --font-main: white;
   --font-selected: white;
+  --task-card: rgba(255, 255, 255, 0.086);
 }
 .App.light {
-  --background: #f4f7ff;
+  --background: #ecf1ff;
   --background-accent: white;
   --accent-color: #645fc6;
   --font-color: #848b9c;
   --font-main: black;
   --font-selected: white;
+  --task-card: rgba(173, 173, 173, 0.185);
 }
 .App {
   display: flex;

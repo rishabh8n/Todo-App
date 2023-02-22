@@ -1,11 +1,21 @@
 .column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow-y: scroll;
+  gap: 15px;
+  /* overflow-y: scroll; */
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow: -moz-scrollbars-none;
+}
+.task-container {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-container.empty {
+  border: 3px dashed var(--font-color);
+  border-radius: 0.5em;
 }
 .column::-webkit-scrollbar {
   display: none;
@@ -23,11 +33,41 @@
   content: "";
   height: 11px;
   width: 11px;
-  background-color: blueviolet;
+  background-color: rgb(226, 162, 43);
   border-radius: 50%;
 }
+.column:nth-of-type(2n) p::before {
+  background-color: rgb(43, 226, 131);
+}
+.column:nth-of-type(3n) p::before {
+  background-color: rgb(0, 158, 186);
+}
+.column:nth-of-type(1) p::before {
+  background-color: blueviolet;
+}
+.column:nth-of-type(2) p::before {
+  background-color: rgb(43, 107, 226);
+}
+.column:nth-of-type(3) p::before {
+  background-color: rgb(70, 226, 43);
+}
+.column:nth-of-type(4) p::before {
+  background-color: rgb(226, 43, 86);
+}
+.column:nth-of-type(5) p::before {
+  background-color: rgb(198, 226, 43);
+}
+.column:nth-of-type(6) p::before {
+  background-color: rgb(98, 60, 201);
+}
+.column:nth-of-type(7) p::before {
+  background-color: rgb(255, 18, 18);
+}
+.column:nth-of-type(8) p::before {
+  background-color: rgb(43, 226, 195);
+}
 .task {
-  background-color: rgba(255, 255, 255, 0.086);
+  background-color: var(--task-card);
   padding: 0.8em;
   border-radius: 0.5em;
   cursor: pointer;
