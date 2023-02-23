@@ -7,6 +7,7 @@
   color: var(--font-color);
   flex-direction: column;
   border-right: 1px solid var(--font-color);
+  gap: 5px;
   opacity: 1;
   transition: all 0.35s ease;
   white-space: nowrap;
@@ -58,6 +59,9 @@
   flex-direction: column;
   gap: 3px;
   font-weight: 500;
+  flex-basis: 80%;
+  overflow: scroll;
+  min-height: 80px;
 }
 .boards p {
   font-size: 0.8rem;
@@ -78,13 +82,23 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
+  min-height: 2.7em;
+  gap: 7px;
   transition: all 0.3s ease;
 }
 .boards .board-name span,
-svg {
+.boards .board-name svg {
   z-index: 3;
   position: relative;
+}
+.boards .board-name svg {
+  flex-basis: 15%;
+}
+.boards .board-name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-basis: 85%;
+  text-align: left;
 }
 .boards .board-name::before {
   content: "";
@@ -105,7 +119,7 @@ svg {
   /* background-color: #635fbf; */
   color: var(--font-selected);
 }
-.boards .addBoard {
+.sidebar .addBoard {
   color: var(--accent-color);
   font-weight: 600;
   font-size: 0.9rem;
@@ -115,7 +129,7 @@ svg {
   transition: all 0.2s ease;
 }
 
-.boards .addBoard:hover {
+.sidebar .addBoard:hover {
   background-color: #645fbf12;
   color: var(--font-main);
 }

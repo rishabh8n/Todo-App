@@ -20,7 +20,6 @@ function MainContainer() {
   );
   const disptach = useDispatch();
   const dragNdrop = (results) => {
-    console.log(results);
     disptach(
       dragAndDropTask({
         boardId: activeBoardId,
@@ -32,6 +31,13 @@ function MainContainer() {
       })
     );
   };
+  if (activeBoardId === -1) {
+    return (
+      <div className="main-container">
+        <h2 style={{ color: "var(--font-main)" }}>No Board Selected</h2>
+      </div>
+    );
+  }
 
   return (
     <DragDropContext onDragEnd={dragNdrop}>

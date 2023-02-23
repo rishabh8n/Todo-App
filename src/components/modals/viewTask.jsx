@@ -66,7 +66,7 @@ function ViewTask({ taskId }) {
         <h3>Subtasks</h3>
         {task.subtasks.map((subtask, index) => (
           <div
-            className="subtask-item"
+            className={`subtask-item ${subtask.isCompleted ? "completed" : ""}`}
             key={index}
             onClick={() =>
               dispatch(

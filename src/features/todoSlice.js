@@ -1,9 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../data.json";
 
+// load string from localStarage and convert into an Object
+// invalid output must be undefined
+function loadFromLocalStorage() {
+  try {
+    const todoState = localStorage.getItem("todoState");
+    if (todoState === null) return undefined;
+    return JSON.parse(todoState);
+  } catch (e) {
+    console.warn(e);
+    return undefined;
+  }
+}
+const storedData = loadFromLocalStorage();
+
 export const todoSlice = createSlice({
   name: "todo",
-  initialState: data,
+  initialState: storedData ? storedData : data,
   reducers: {
     addBoard: (state, action) => {
       state.boards.push(action.payload);

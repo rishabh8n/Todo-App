@@ -17,7 +17,7 @@
 .deleteBoard-modal,
 .viewTask-modal,
 .deleteTask-modal {
-  width: max(45%, 290px);
+  width: max(30%, 290px);
   background-color: var(--background-accent);
   color: var(--font-main);
   padding: 1.5em;
@@ -222,6 +222,10 @@
 }
 .subtask-item input[type="checkbox"]:checked::before {
   transform: scale(1);
+}
+.subtask-item.completed {
+  text-decoration: line-through;
+  color: var(--font-color);
 }
 .close {
   top: 1.2em;

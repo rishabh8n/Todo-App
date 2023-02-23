@@ -59,15 +59,15 @@ function Sidebar({ setTheme }) {
               </button>
             );
           })}
-          <button
-            className="addBoard"
-            onClick={() => {
-              dispatch(changeActiveModal({ name: "addBoard" }));
-            }}
-          >
-            +Create New Board
-          </button>
         </div>
+        <button
+          className="addBoard"
+          onClick={() => {
+            dispatch(changeActiveModal({ name: "addBoard" }));
+          }}
+        >
+          +Create New Board
+        </button>
         <div className="theme">
           <Sun />
 

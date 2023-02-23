@@ -11,6 +11,7 @@
   border-bottom: 1px solid var(--font-color);
   transition: all 0.3s ease;
 }
+
 .mobile.overlay {
   display: none;
 }
@@ -24,6 +25,10 @@
   flex-basis: 100%;
   font-size: 1.45rem;
   font-weight: 600;
+  white-space: nowrap;
+  flex-basis: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mobile-drop-btn {
   display: none;
@@ -100,8 +105,25 @@
   }
   .header h1 {
     font-size: 1.25rem;
-    flex-basis: 0%;
     white-space: nowrap;
+    max-width: max-content;
+    flex-basis: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header .addBoard {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: left;
+    padding: 0.8em 1.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .header .addBoard:hover {
+    background-color: #645fbf12;
+    color: var(--font-main);
   }
   .header .addTask-btn span {
     display: none;
@@ -109,7 +131,8 @@
   .mobile-drop-btn {
     display: flex;
     align-items: center;
-    flex-basis: 100%;
+    flex-grow: 1;
+    /* flex-basis: 100%; */
   }
   .mobile-drop-btn button svg {
     color: var(--font-main);
@@ -128,11 +151,11 @@
     width: min(calc(300px - 2em), calc(100% - 2em));
     min-width: 280px;
     min-height: 350px;
+    max-height: 400px;
     box-shadow: 0 0 55px 7px rgba(160, 160, 160, 0.159);
     border-radius: 0.35em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     z-index: 999999;
   }
   .mobile-drop-menu .board-name svg {
@@ -148,6 +171,6 @@
     display: none;
   }
   .header h2 {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
