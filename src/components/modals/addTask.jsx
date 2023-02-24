@@ -54,16 +54,18 @@ function AddTask() {
     if (!taskForm.title) {
       alert("Enter the task title");
       formValid = false;
+      return;
     } else {
       taskForm.subtasks.forEach((subtask) => {
         if (!subtask.title) {
-          alert("Enter column names");
           formValid = false;
-          return;
         }
       });
     }
-    if (formValid) {
+    if (!formValid) {
+      alert("Enter subtasks title");
+      return;
+    } else {
       disptach(
         addTask({
           boardId: activeBoardId,

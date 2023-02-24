@@ -48,16 +48,18 @@ function AddBoard() {
     if (!boardForm.name) {
       alert("Enter the name for the board");
       formValid = false;
+      return;
     } else {
       boardForm.columns.forEach((column) => {
         if (!column.name) {
-          alert("Enter column names");
           formValid = false;
-          return;
         }
       });
     }
-    if (formValid) {
+    if (!formValid) {
+      alert("Enter column names");
+      return;
+    } else {
       disptach(addBoard(boardForm));
       disptach(changeActiveBoardId(boardForm.id));
       disptach(changeModalStatus(false));
